@@ -1,0 +1,649 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Rubik:wght@300..900&display=swap");
+/**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Упрощаем работу с изображениями и видео
+ */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  height: 100%;
+  /**
+    Убираем скачок интерфейса по горизонтали
+    при появлении / исчезновении скроллбара
+   */
+}
+
+/**
+  Плавный скролл
+ */
+html,
+:has(:target) {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+   */
+  line-height: 1.5;
+}
+
+/**
+  Нормализация высоты элемента ссылки при его инспектировании в DevTools
+ */
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+  Курсор-рука при наведении на элемент
+ */
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+ */
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+:root {
+  --black-color: #252525;
+  --purple-color: #6c63ff;
+  --purple-hover-color: #2218e0;
+  --white-color: #f7f7f7;
+  --color-gray-through: #8e8e8e;
+  --color-gray-hover: #cdcdcd;
+  --color-gray-1: #f5f5f5;
+  --todo-item-ligth-color: var(--color-gray-hover);
+  --todo-item-black-color: #575757;
+  --todo-item-hover: var(--todo-item-ligth-color);
+  --dropdown-item-white-color: #dbd9f9;
+  --dropdown-item-purple-color: #DBD9F9;
+  --dropdown-item-purple-hover: var(--dropdown-item-white-color);
+  --input-hover-ligth: #eaeaea;
+  --input-hover-dark: #000000;
+  --input-hover-color: var(--input-hover-ligth);
+  --border-color: var(--purple-color);
+  --color-bg: var(--white-color);
+  --color-text: var(var(--black-color));
+  --invalid-color: red;
+  --border: 1px solid var(--border-color);
+  --border-radius: 5px;
+  --input-height: 38px;
+  --transition-duration: 0.3s;
+}
+
+html.is-dark-theme {
+  --color-bg: var(--black-color);
+  --color-text: var(--white-color);
+  --border-color: var(--white-color);
+  --input-hover-color: var(--input-hover-dark);
+  --dropdown-item-purple-hover: var(--dropdown-item-purple-color);
+  --todo-item-hover: var(--todo-item-black-color) ;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  min-height: 100vh;
+  padding: 100px 30px;
+  font-family: "Inter", sans-serif;
+  background-color: var(--color-bg);
+}
+
+input,
+label,
+button {
+  transition-duration: var(--transition-duration);
+}
+
+:focus-visible {
+  outline: 2px dashed var(--color-black);
+  outline-offset: 4px;
+  transition-duration: 0s !important;
+}
+
+.is-invalid {
+  background-color: var(--invalid-color);
+  transition: var(--transition-duration);
+}
+
+.show-select {
+  display: flex !important;
+}
+
+.rotate-chevron {
+  transform: rotate(180deg);
+  transition-duration: var(--transition-duration);
+}
+
+.menu-open {
+  display: flex !important;
+}
+
+.caret-rotate {
+  transform: rotate(180deg);
+  transition-duration: var(--transition-duration);
+}
+
+.todo {
+  display: flex;
+  flex-direction: column;
+  row-gap: 18px;
+  width: 100%;
+  max-width: 750px;
+  padding: 24px;
+}
+.todo__title {
+  color: var(--color-text);
+  text-align: center;
+  font-size: 26px;
+}
+.todo__form {
+  display: flex;
+  column-gap: 16px;
+}
+.todo__dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 105px;
+  height: var(--input-height);
+  font-size: 14px;
+  border: none;
+  color: var(--color-text);
+  border-radius: var(--border-radius);
+  background-color: transparent;
+  transition-duration: var(--transition-duration);
+}
+.todo__dropdown * {
+  cursor: pointer;
+}
+.todo__dropdown-select {
+  width: 100%;
+  height: 100%;
+  height: var(--input-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 7px;
+  color: var(--color-text);
+  background-color: var(--purple-color);
+  border-radius: var(--border-radius);
+  transition-duration: var(--transition-duration);
+}
+.todo__dropdown-select:hover {
+  background-color: var(--purple-hover-color);
+}
+.todo__dropdown-selected {
+  color: var(--white-color);
+  font-size: 14px;
+}
+.todo__dropdown-caret {
+  transition-duration: var(--transition-duration);
+}
+.todo__dropdown-menu {
+  position: absolute;
+  top: 100%;
+  z-index: 1;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100px;
+  width: 100%;
+  border-radius: var(--border-radius);
+  border: var(--border);
+  background-color: var(--white-color);
+}
+.todo__dropdown-item {
+  color: var(--purple-color);
+  font-size: 16px;
+  height: 32.5px;
+  padding-left: 5px;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+}
+.todo__dropdown-item:hover {
+  background-color: var(--dropdown-item-purple-hover);
+  transition-duration: var(--transition-duration);
+}
+.todo__switch-theme-button {
+  flex-shrink: 0;
+  height: var(--input-height);
+  width: var(--input-height);
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: var(--purple-color);
+  background-image: url("/src/icons/switch-theme-icon_white.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.todo__field {
+  width: 100%;
+}
+.todo__list {
+  --todoListRowGap: 17px;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 525px;
+  display: grid;
+  row-gap: var(--todoListRowGap);
+}
+.todo__list:empty {
+  display: none;
+}
+.todo__empty-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 20px;
+  width: 100%;
+  max-width: 520px;
+  margin-top: 40px;
+  margin-inline: auto;
+}
+.todo__empty-message__img {
+  width: 100%;
+  max-width: 224px;
+  aspect-ratio: 1.27;
+}
+.todo__empty-message__text {
+  color: var(--color-text);
+  text-align: center;
+  font-size: 20px;
+}
+.todo__empty-message:empty {
+  display: none;
+}
+.todo__button-open-modal {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--purple-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+  bottom: -10rem;
+  right: 7%;
+  margin-left: auto;
+  margin-top: 5rem;
+}
+.todo__button-open-modal:hover {
+  background-color: var(--purple-hover-color);
+  transition-duration: var(--transition-duration);
+}
+@media (max-width: 470px) {
+  .todo__button-open-modal {
+    bottom: -5rem;
+  }
+}
+
+.field {
+  position: relative;
+}
+.field:has(.field__input:not(:placeholder-shown)) .field__label {
+  scale: 0.8;
+  translate: -1.75em -2.6em;
+  color: var(--black-color);
+}
+.field__label {
+  position: absolute;
+  top: 50%;
+  left: 17px;
+  color: #b3b3b3;
+  font-size: 16px;
+  translate: 0 -50%;
+  z-index: 1;
+}
+.field__input {
+  --fieldInputPaddingX: 16px;
+  --searchInputIconSize: 21px;
+  width: 100%;
+  height: var(--input-height);
+  border: var(--border);
+  color: var(--color-text);
+  border-radius: var(--border-radius);
+  padding-inline: var(--fieldInputPaddingX);
+  background-color: transparent;
+}
+.field__input:focus, .field__input:hover {
+  scale: 1.01;
+}
+.field__input:focus {
+  background-color: var(--input-hover-color);
+  transition-duration: var(--transition-duration);
+}
+.field__input[type=search]:placeholder-shown {
+  padding-right: calc(var(--fieldInputPaddingX) * 2 + var(--searchInputIconSize));
+  background-image: url(/src/icons/search-icon_purple.svg);
+  background-position: calc(100% - var(--fieldInputPaddingX)) 50%;
+  background-size: var(--searchInputIconSize);
+  background-repeat: no-repeat;
+}
+
+.todo-item {
+  --paddingTodoItemX: 17px;
+  display: flex;
+  column-gap: var(--todoListRowGap);
+  align-items: center;
+  position: relative;
+  border-radius: var(--border-radius);
+  padding: var(--paddingTodoItemX);
+}
+.todo-item.is-disappearing {
+  opacity: 0;
+  translate: 0 -75%;
+  transition-duration: calc(var(--transition-duration) * 2);
+  pointer-events: none;
+}
+.todo-item.is-disappearing ~ .todo-item {
+  translate: 0 calc((100% + var(--todoListRowGap)) * -1);
+  transition-delay: var(--transition-duration);
+  transition-duration: var(--transition-duration);
+  pointer-events: none;
+}
+.todo-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: var(--paddingTodoItemX);
+  right: var(--paddingTodoItemX);
+  bottom: calc(-1 * var(--paddingTodoItemX) / 2);
+  height: 1px;
+  width: calc(100% - var(--paddingTodoItemX) * 2);
+  background-color: var(--purple-color);
+}
+.todo-item:hover {
+  background-color: var(--todo-item-hover);
+  transition-duration: var(--transition-duration);
+}
+.todo-item__checkbox {
+  flex-shrink: 0;
+  appearance: none;
+  position: relative;
+  height: 30px;
+  width: 30px;
+  margin: 0;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  color: transparent;
+  cursor: pointer;
+}
+.todo-item__checkbox:not(:checked)::after {
+  opacity: 0;
+}
+.todo-item__checkbox:checked {
+  background-color: var(--purple-color);
+}
+.todo-item__checkbox:checked + .todo-item__label {
+  color: var(--color-gray-through);
+  text-decoration: line-through;
+}
+.todo-item__checkbox::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  background: url("/src/icons/icon-check_white.svg") center/contain no-repeat;
+  color: var(--color-bg);
+  width: 20px;
+  height: 20px;
+}
+.todo-item__checkbox:active {
+  transform: scale(0.95);
+}
+.todo-item__label {
+  color: var(--color-text);
+  width: 100%;
+  font-size: 20px;
+  pointer-events: none;
+}
+.todo-item__buttons {
+  display: flex;
+  column-gap: 10px;
+}
+
+.buttons__rename-button, .buttons__delete-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  background-color: var(--purple-color);
+  border: none;
+  border-radius: var(--border-radius);
+}
+.buttons__rename-button:hover, .buttons__delete-button:hover {
+  background-color: var(--purple-hover-color);
+  transition-duration: var(--transition-duration);
+}
+
+.modal {
+  display: block;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-duration) ease;
+}
+.modal__container {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-duration) ease;
+  padding: 18px 40px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+  background-color: var(--color-bg);
+  border: var(--border);
+  width: 100%;
+  max-width: 510px;
+  height: 100%;
+  max-height: 360px;
+  border-radius: 16px;
+}
+.modal__new-task-name-input {
+  color: var(--color-text);
+}
+.modal__new-task-name-input:focus {
+  background-color: var(--input-hover-color);
+}
+.modal__rules {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+.modal__rule {
+  width: 100%;
+  height: 33px;
+  color: var(--color-text);
+  line-height: 33px;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  text-align: center;
+}
+.modal__buttons {
+  margin-top: auto;
+  display: flex;
+  width: 100%;
+  max-width: 430px;
+  justify-content: space-between;
+}
+.modal__title {
+  color: var(--color-text);
+  text-transform: uppercase;
+  text-align: center;
+}
+.modal__button {
+  width: 100px;
+  height: var(--input-height);
+  border-radius: var(--border-radius);
+  text-transform: uppercase;
+  text-align: center;
+}
+.modal__button:hover {
+  scale: 1.03;
+}
+.modal__button:active {
+  opacity: 0.7;
+}
+.modal__cancel-button {
+  background-color: var(--color-bg);
+  border: var(--border);
+  color: var(--purple-color);
+}
+.modal__accept-button {
+  background-color: var(--purple-color);
+  border: none;
+  color: var(--color-text);
+}
+
+.is-open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+/*# sourceMappingURL=main.css.map */

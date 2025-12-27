@@ -1,0 +1,45 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  min-height: 100vh;
+  padding: 100px 30px;
+  font-family: "Inter", sans-serif;
+  background-color: var(--color-bg);
+}
+
+
+input,
+label,
+button {
+  transition-duration: var(--transition-duration);
+}
+
+:focus-visible {
+  outline: 2px dashed var(--color-black);
+  outline-offset: 4px;
+  transition-duration: 0s !important;
+}
+
+.is-invalid {
+  background-color: var(--invalid-color);
+  transition: var(--transition-duration);
+}
+
+.show-select {
+  display: flex !important;
+}
+
+.rotate-chevron {
+  transform: rotate(180deg);
+  transition-duration: var(--transition-duration);
+}
+
+.menu-open {
+    display: flex !important;
+}
+
+.caret-rotate {
+  transform: rotate(180deg);
+  transition-duration: var(--transition-duration);
+}

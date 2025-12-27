@@ -1,0 +1,45 @@
+:root {
+  --black-color: #252525;
+  --purple-color: #6c63ff;
+  --purple-hover-color: #2218e0;
+  --white-color: #f7f7f7;
+  --color-gray-through: #8e8e8e;
+  --color-gray-hover: #cdcdcd;
+  --color-gray-1: #f5f5f5;
+
+  --todo-item-ligth-color: var(--color-gray-hover);
+  --todo-item-black-color: #575757;
+  --todo-item-hover: var(--todo-item-ligth-color);
+
+  --dropdown-item-white-color: #dbd9f9;
+  --dropdown-item-purple-color: #DBD9F9;
+  --dropdown-item-purple-hover: var(--dropdown-item-white-color);
+
+  
+  --input-hover-ligth: #eaeaea;
+  --input-hover-dark: #000000;
+  --input-hover-color: var(--input-hover-ligth);
+  
+  --border-color: var(--purple-color);
+
+  --color-bg: var(--white-color);
+  --color-text: var(var(--black-color));
+
+  --invalid-color: red;
+
+  --border: 1px solid var(--border-color);
+  --border-radius: 5px;
+
+  --input-height: 38px;
+
+  --transition-duration: 0.3s;
+}
+
+html.is-dark-theme {
+  --color-bg: var(--black-color);
+  --color-text: var(--white-color);
+  --border-color: var(--white-color);
+  --input-hover-color: var(--input-hover-dark);
+  --dropdown-item-purple-hover: var(--dropdown-item-purple-color);
+  --todo-item-hover: var(--todo-item-black-color)
+}

@@ -1,0 +1,18 @@
+.buttons {
+  &__rename-button,
+  &__delete-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background-color: var(--purple-color);
+    border: none;
+    border-radius: var(--border-radius);
+
+    &:hover {
+      background-color: var(--purple-hover-color);
+      transition-duration: var(--transition-duration);
+    }
+  }
+}

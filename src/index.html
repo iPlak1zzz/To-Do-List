@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <title>Second To Do List</title>
+  </head>
+  <body>
+    <div class="todo" todo-data-js>
+      <h1 class="todo__title">TODO LIST by iPlak1zzz</h1>
+
+      <form class="todo__form" data-js-todo-search-form>
+        <div class="todo__field field">
+          <label for="search-task" class="field__label">Search note...</label>
+          <input
+            id="search-task"
+            type="search"
+            class="field__input"
+            placeholder=" "
+            autocomplete="off"
+            data-js-todo-search-task-input
+          />
+        </div>
+        <!-- <div class="todo__select" data-js-todo-tasks-filter>
+          <button
+            class="todo__select-item--trigger"
+            data-js-todo-trigger
+            type="button"
+          >
+            <span
+              class="todo__select-item--trigger-value"
+              data-js-todo-trigger-value
+              >All</span
+            >
+
+            <svg
+              data-js-todo-select-item
+              width="12"
+              height="6"
+              viewBox="0 0 8 4"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3.86923 3.5L0.500001 0.5"
+                stroke="#F7F7F7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M7.23846 0.5L3.86923 3.5"
+                stroke="#F7F7F7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+
+          <div class="todo__select-items" data-js-todo-select-items>
+            <button class="todo__select-item" type="button" value="all">
+              All
+            </button>
+            <button class="todo__select-item" type="button" value="complete">
+              Complete
+            </button>
+            <button class="todo__select-item" type="button" value="incomplete">
+              Incomplete
+            </button>
+          </div>
+        </div> -->
+        <div class="todo__dropdown" data-js-todo-dropdown>
+          <div class="todo__dropdown-select" data-js-todo-dropdown-select>
+            <span class="todo__dropdown-selected" data-js-todo-dropdown-selected>All</span>
+            <div class="caret">
+              <svg 
+                data-js-todo-dropdown-caret
+                width="12"
+                height="6"
+                viewBox="0 0 8 4"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3.86923 3.5L0.500001 0.5"
+                  stroke="#F7F7F7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M7.23846 0.5L3.86923 3.5"
+                  stroke="#F7F7F7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
+          <ul class="todo__dropdown-menu" data-js-todo-dropdown-menu>
+            <li class="todo__dropdown-item" value="all" data-js-todo-dropdown-item>All</li>
+            <li class="todo__dropdown-item" value="complete" data-js-todo-dropdown-item>Complete</li>
+            <li class="todo__dropdown-item" value="incomplete" data-js-todo-dropdown-item>Incomplete</li>
+          </ul>
+        </div>
+        <button
+          class="todo__switch-theme-button"
+          type="button"
+          data-js-todo-switch-theme-button
+        ></button>
+      </form>
+
+      <ul class="todo__list" data-js-todo-list></ul>
+      <div class="todo__empty-message" data-js-todo-empty-message></div>
+      <button
+        class="todo__button-open-modal"
+        type="button"
+        data-js-open-modal-button
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M10.5 22.5C10.5 22.8978 10.658 23.2794 10.9393 23.5607C11.2206 23.842 11.6022 24 12 24C12.3978 24 12.7794 23.842 13.0607 23.5607C13.342 23.2794 13.5 22.8978 13.5 22.5V13.5H22.5C22.8978 13.5 23.2794 13.342 23.5607 13.0607C23.842 12.7794 24 12.3978 24 12C24 11.6022 23.842 11.2206 23.5607 10.9393C23.2794 10.658 22.8978 10.5 22.5 10.5H13.5V1.5C13.5 1.10218 13.342 0.720644 13.0607 0.43934C12.7794 0.158035 12.3978 0 12 0C11.6022 0 11.2206 0.158035 10.9393 0.43934C10.658 0.720644 10.5 1.10218 10.5 1.5V10.5H1.5C1.10218 10.5 0.720644 10.658 0.43934 10.9393C0.158035 11.2206 0 11.6022 0 12C0 12.3978 0.158035 12.7794 0.43934 13.0607C0.720644 13.342 1.10218 13.5 1.5 13.5H10.5V22.5Z"
+            fill="#F7F7F7"
+          />
+        </svg>
+      </button>
+    </div>
+    <div class="modal" data-js-modal-overlay>
+      <div class="modal__container" data-js-modal>
+        <h2 class="modal__title">New note</h2>
+        <form class="modal__form field" data-js-todo-new-task-form>
+          <label for="new-task" class="field__label">Task name...</label>
+          <input
+            id="new-task"
+            type="text"
+            name="new-task"
+            class="modal__new-task-name-input field__input"
+            placeholder=" "
+            data-js-todo-new-task-input
+          />
+        </form>
+        <div class="modal__rules">
+          <p class="modal__rule" data-js-third-rule>Not empty</p>
+          <p class="modal__rule" data-js-second-rule>
+            Does not start with a space
+          </p>
+          <p class="modal__rule" data-js-first-rule>
+            More than 3 charasters
+          </p>
+        </div>
+        <div class="modal__buttons">
+          <button
+            class="modal__button modal__cancel-button"
+            data-js-close-cancel-button
+          >
+            Cancel
+          </button>
+          <button
+            class="modal__button modal__accept-button"
+            data-js-close-accept-button
+            type="submit"
+          >
+            Accept
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="scripts/script.js"></script>
+  </body>
+</html>
