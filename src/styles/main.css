@@ -219,6 +219,11 @@ body {
   font-family: "Inter", sans-serif;
   background-color: var(--color-bg);
 }
+@media (max-width: 600px) {
+  body {
+    padding: 50px 30px;
+  }
+}
 
 input,
 label,
@@ -345,7 +350,7 @@ button {
   border: none;
   border-radius: var(--border-radius);
   background-color: var(--purple-color);
-  background-image: url("/src/icons/switch-theme-icon_white.svg");
+  background-image: url("../icons/switch-theme-icon_white.svg");
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -449,7 +454,7 @@ button {
 }
 .field__input[type=search]:placeholder-shown {
   padding-right: calc(var(--fieldInputPaddingX) * 2 + var(--searchInputIconSize));
-  background-image: url(/src/icons/search-icon_purple.svg);
+  background-image: url("../icons/search-icon_purple.svg");
   background-position: calc(100% - var(--fieldInputPaddingX)) 50%;
   background-size: var(--searchInputIconSize);
   background-repeat: no-repeat;
@@ -518,7 +523,7 @@ button {
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  background: url("/src/icons/icon-check_white.svg") center/contain no-repeat;
+  background: url("../icons/icon-check_white.svg") center/contain no-repeat;
   color: var(--color-bg);
   width: 20px;
   height: 20px;
@@ -558,7 +563,7 @@ button {
   right: 0;
   width: 100%;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;

@@ -170,7 +170,7 @@ export class Todo {
       : "";
 
     // this.emptyMessageElement.innerHTML = isEmptyItems
-    //   ? `<img src="/src/images/emptyMainImage.png" alt="Empty..." class="todo__empty-message__img">
+    //   ? `<img src="src/images/emptyMainImage.png" alt="Empty..." class="todo__empty-message__img">
     //   <p class="todo__empty-message__text">Empty...</p>`
     //   : "";
 
@@ -178,12 +178,12 @@ export class Todo {
 
     if (isEmptyItems) {
       this.emptyMessageElement.innerHTML = `
-        <img src="/src/images/emptyMainImage.png" alt="Empty..." class="todo__empty-message__img">
+        <img src="src/images/emptyMainImage.png" alt="Empty..." class="todo__empty-message__img">
         <p class="todo__empty-message__text">Empty...</p>
       `;
     } else if (isEmptyFilteredItems) {
       this.emptyMessageElement.innerHTML = `
-        <img src="/src/images/emptyMainImage.png" alt="Empty..." class="todo__empty-message__img">
+        <img src="src/images/emptyMainImage.png" alt="Empty..." class="todo__empty-message__img">
         <p class="todo__empty-message__text">Empty...</p>
       `;
     }
@@ -302,7 +302,6 @@ export class Todo {
     const value = option.toLowerCase();
 
     result = result.filter((item) => {
-      console.log(this.state.filteredItems);
       return value === "complete"
         ? item.isChecked
         : value === "incomplete"

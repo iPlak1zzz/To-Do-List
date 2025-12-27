@@ -6,6 +6,10 @@ body {
   padding: 100px 30px;
   font-family: "Inter", sans-serif;
   background-color: var(--color-bg);
+
+  @media (max-width: 600px) {
+    padding: 50px 30px
+  }
 }
 
 
