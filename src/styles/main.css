@@ -277,6 +277,20 @@ button {
   display: flex;
   column-gap: 16px;
 }
+@media (max-width: 451px) {
+  .todo__form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    column-gap: 16px;
+    row-gap: 30px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+  .todo__form .todo__field {
+    grid-column: 1/-1;
+  }
+}
 .todo__dropdown {
   position: relative;
   display: flex;
