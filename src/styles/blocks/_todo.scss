@@ -99,7 +99,7 @@
     border: none;
     border-radius: var(--border-radius);
     background-color: var(--purple-color);
-    background-image: url("../icons/switch-theme-icon_white.svg");
+    background-image: url("../icons/switch-theme-icon_light-theme.svg");
     background-position: center;
     background-repeat: no-repeat;
   }
@@ -173,4 +173,8 @@
       bottom: -5rem;
     }
   }
+}
+
+html.is-dark-theme .todo__switch-theme-button {
+  background-image: url("../icons/switch-theme-icon_dark-theme.svg");
 }
